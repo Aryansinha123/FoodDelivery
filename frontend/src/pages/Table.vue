@@ -11,17 +11,17 @@
 
             <div class="icons ">
                 <img src="../assets/images/icon-1.png" alt="">
-                <h3>7:00am to 10:00pm</h3>
+                <h3>5:00am to 2:00am</h3>
             </div>
 
             <div class="icons">
                 <img src="../assets/images/icon-2.png" alt="">
-                <h3>+84 123 123 123</h3>
+                <h3>+91 8887014665</h3>
             </div>
 
             <div class="icons">
                 <img src="../assets/images/icon-3.png" alt="">
-                <h3>02 Duong Khue, Cau Giay, Ha Noi, Viet Nam</h3>
+                <h3>Vellore , Tamil Nadu</h3>
             </div>
 
         </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="input-box">
                     <label for="uPhone">your phone number</label>
-                    <input type="text" name="uPhone" id="uPhone" v-model="orderObj.phone">
+                    <input type="tel" name="uPhone" pattern="[0-9]{10}" id="uPhone" maxlength="10" placeholder="Enter phone number"  v-model="orderObj.phone">
                     <p v-if="errorObj.phoneErr.length > 0">{{ errorObj.phoneErr[0] }}</p>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <p v-if="errorObj.cardErr.length > 0">{{ errorObj.cardErr[0] }}</p>
                 </div>
                 <div class="input-box">
-                    <label for="oWhen">when</label>
+                    <label for="oWhen">time</label>
                     <input type="datetime-local" name="oWhen" id="oWhen" v-model="orderObj.when"
                         @click="availableTime()">
                     <p v-if="errorObj.whenErr.length > 0">{{ errorObj.whenErr[0] }}</p>

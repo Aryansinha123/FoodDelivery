@@ -538,6 +538,7 @@ hr {
     width: 100%;
     justify-content: center;
     position: relative;
+    /* padding: 211px; */
     display: flex;
 }
 
@@ -548,6 +549,7 @@ hr {
     font-size: 20px;
     color: white;
     background: #27ae60;
+    padding: 4px;
 }
 
 ::placeholder {
@@ -614,7 +616,9 @@ hr {
 .menu-section .box-container .box .fa-heart:hover {
     color: #27ae60;
 }
-
+.fa-heart:hover{
+    color: red;
+}
 .menu-section .box-container .box .image {
     margin: 1rem 0;
 }

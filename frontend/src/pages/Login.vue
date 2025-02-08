@@ -11,30 +11,31 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="email" id="uEmail" name="uEmail" class="form-control" placeholder="enter your email"
+                    <input type="email" id="uEmail" name="uEmail" class="form-control" placeholder="Enter your email"
                         v-model="loginObj.email" />
                 </div>
 
-                <div class="form-group">
-                    <input type="password" id="uPass" name="uPass" class="form-control"
-                        placeholder="enter your password" v-model="loginObj.pass" />
+                <div class="form-group password-field">
+                    <input :type="showPassword ? 'text' : 'password'" id="uPass" name="uPass" class="form-control"
+                        placeholder="Enter your password" v-model="loginObj.pass" />
+                    <button type="button" class="eye-btn" @click="togglePasswordVisibility">
+                        <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="login now" class="btn">
-                    <p>don't have an account? <router-link @click="scrollToTop()" to="/register">create one
-                        </router-link>
-                    </p>
+                    <input type="submit" value="Login Now" class="btn">
+                    <p>Don't have an account? <router-link @click="scrollToTop()" to="/register">Create one</router-link></p>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+
 export default {
     name: 'Login',
 
@@ -43,7 +44,8 @@ export default {
             loginObj: { email: "", pass: "" },
             matchUser: undefined,
             errors: [],
-        }
+            showPassword: false, // Added for toggling password visibility
+        };
     },
 
     methods: {
@@ -51,6 +53,10 @@ export default {
 
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+
+        togglePasswordVisibility() {
+            this.showPassword = !this.showPassword;
         },
 
         async getMatchUser(email) {
@@ -62,44 +68,37 @@ export default {
             this.errors = [];
 
             if (!this.loginObj.email) {
-                this.errors.push("Entering a email is required");
-            }
-            else {
+                this.errors.push("Entering an email is required");
+            } else {
                 if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.loginObj.email)) {
                     this.errors.push('Email must be valid');
                 }
             }
 
-
             if (!this.loginObj.pass) {
                 this.errors.push('Password is required');
             }
 
-            if (!this.errors.length == 0) {
+            if (this.errors.length) {
                 e.preventDefault();
-            }
-            else {
+            } else {
                 e.preventDefault();
                 await this.getMatchUser(this.loginObj.email);
                 if (!this.matchUser) {
-                    this.errors.push("Incorrect email or password!")
-                }
-                else {
+                    this.errors.push("Incorrect email or password!");
+                } else {
                     if (this.matchUser.user_password === this.loginObj.pass) {
                         this.matchUser.user_password = "";
                         this.setUser(this.matchUser);
                         this.$router.push("/");
-                    }
-                    else {
-                        this.errors.push("Incorrect email or password!")
+                    } else {
+                        this.errors.push("Incorrect email or password!");
                     }
                 }
             }
         }
-
     }
-
-}
+};
 </script>
 
 <style scoped>
@@ -145,6 +144,30 @@ export default {
     text-transform: none;
     width: 100%;
     border: none;
+}
+
+/* Style for password field */
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field .eye-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #666;
+    outline: none;
+}
+
+.password-field .eye-btn:hover {
+    color: #130f40;
+    outline: none;
+    box-shadow: none;
 }
 
 .login-container .login-form-container form .btn {

@@ -7,14 +7,11 @@
 
         <div class="row">
             <div class="about-content">
-                <img src="../assets/images/taco-chefcartoon.png" alt="">
+                <img src="../assets/images/pexels-chef.jpg" alt="">
+                
                 <div class="about-content-text">
-                    <p>Our restaurant QFood was founded by Quang (a 5 Michelin stars chef) in 2002 in Vietnam. After
-                        that, thanks to the support of our customers, our brand has been popularized globally in markets
-                        such as Australia, USA, Canada, UK, France, Germany, Belgium, Russia, China, Japan,
-                        Singapore, ... Mexican-style meals, the products that we deliver to customers are always the
-                        best quality products.</p>
-                    <p>Customers can eat at the restaurant to experience the Mexican atmosphere or can order food to be
+                    <p>Welcome to HungerGo, your go-to destination for delicious food delivered straight to your doorstep. We are a passionate team dedicated to connecting food lovers with the best restaurants, cafes, and street vendors in town. Whether you're craving comfort food, gourmet cuisine, or a quick snack, we've got you covered with an easy and seamless ordering experience.</p>
+                    <p>Customers can eat at the restaurant to experience the India atmosphere or can order food to be
                         delivered to their homes.</p>
                 </div>
             </div>
@@ -70,7 +67,17 @@ export default {
     font-size: 16px;
     padding-left: 50px;
 }
+.about-section img{
+    /* border: 2px solid red; */
+    width: 60vw;
+    height: 20vw;
+    /* transition to scale with ease */
+    transition: transform 2s ease;
 
+}
+.about-section img:hover{
+    transform: scale(1.1);
+}
 .about-section .about-article {
     margin-top: 50px;
     padding: 10px;
@@ -113,6 +120,7 @@ export default {
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
     transform: scale(1);
     transition: all .25s;
+    border:2px solid orange;
 }
 
 .about-section .gallery .wrapper img:nth-child(7n + 1) {

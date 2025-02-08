@@ -2,15 +2,16 @@
     <div>
         <div class="home-main">
             <div class="content">
-                <span>welcome foodies</span>
-                <h3>Original taste from Mexico 😋</h3>
-                <p>We guarantee to use fresh food with the best quality. Customers will enjoy Mexican cuisine with
+                <!-- <span>welcome foodies</span> -->
+                 <h2>Welcome foodies</h2>
+                <h3>Original taste of India 😋</h3>
+                <p>We guarantee to use fresh food with the best quality. Customers will enjoy World Wide cuisine with
                     explosive, sophisticated flavors.</p>
                 <router-link @click="scrollToTop()" to="/menu" class="btn">order now</router-link>
             </div>
             <div class="image">
-                <img src="../assets/images/b.png" alt="" class="home-img">
-                <img src="../assets/images/a.png" alt="" class="home-parallax-img">
+                <img src="../assets/images/testimonial-img.png" alt="" class="home-img">
+                <!-- <img src="../assets/images/a.png" alt="" class="home-parallax-img"> -->
             </div>
         </div>
 
@@ -36,8 +37,8 @@
                 <h3>sides</h3>
             </router-link>
 
-            <router-link @click="scrollToTop()" to="/menu" class="box">
-                <img src="../assets/images/dessert-img.png" alt="">
+            <router-link @click="scrollToTop()" to="/menu" class="box dessert">
+                <img src="../assets/images/food_122.png" alt="">
                 <h3>dessert</h3>
             </router-link>
 
@@ -150,7 +151,9 @@ export default {
 
 .home-main .content span {
     font-size: 2rem;
-    color: #27ae60;
+    /* color: #27ae60; */
+    color: #ff6600;
+
 }
 
 .home-main .content h3 {
@@ -195,6 +198,7 @@ export default {
 }
 
 .home-category .box {
+    /* border: 2px solid red; */
     padding: 2rem;
     text-align: center;
     border-radius: .5rem;
@@ -202,7 +206,10 @@ export default {
 }
 
 .home-category .box:hover {
-    background: #27ae60;
+    /* background: #27ae60; */
+    background:#ff6600 ;
+    /* scale  */
+    transform: scale(1.1);
 }
 
 .home-category .box:hover h3 {
@@ -212,7 +219,11 @@ export default {
 .home-category .box img {
     height: 7rem;
 }
-
+.dessert img{
+    /* background-color: red; */
+    position: relative;
+    right: 19px;
+}
 .home-category .box h3 {
     font-size: 1.8rem;
     color: #130f40;
@@ -299,7 +310,10 @@ export default {
     color: #fff;
     padding-top: .5rem;
 }
-
+.grid{
+    /* border: 2px solid red; */
+    margin: 4px 0;
+}
 .home-about {
     display: flex;
     flex-wrap: wrap;
@@ -324,7 +338,8 @@ export default {
 .home-about .content span {
     font-family: 'Satisfy', cursive;
     font-size: 3rem;
-    color: #27ae60;
+    /* color: #27ae60; */
+    color: #ff6600;
 }
 
 .home-about .content .title {
