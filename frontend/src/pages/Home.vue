@@ -3,14 +3,14 @@
         <div class="home-main">
             <div class="content">
                 <!-- <span>welcome foodies</span> -->
-                 <h2>Welcome foodies</h2>
+                <h2>Welcome foodies</h2>
                 <h3>Original taste of India 😋</h3>
                 <p>We guarantee to use fresh food with the best quality. Customers will enjoy World Wide cuisine with
                     explosive, sophisticated flavors.</p>
                 <router-link @click="scrollToTop()" to="/menu" class="btn">order now</router-link>
             </div>
             <div class="image">
-                <img src="../assets/images/testimonial-img.png" alt="" class="home-img">
+                <img src="../assets/images/delivery-guy.svg" alt="" class="home-img">
                 <!-- <img src="../assets/images/a.png" alt="" class="home-parallax-img"> -->
             </div>
         </div>
@@ -18,13 +18,13 @@
 
         <div class="home-category">
             <router-link @click="scrollToTop()" to="/menu" class="box">
-                <img src="../assets/images/taco-img.png" alt="">
-                <h3>taco</h3>
+                <img src="../assets/images/menu-1.png" alt="">
+                <h3>rolls</h3>
             </router-link>
 
             <router-link @click="scrollToTop()" to="/menu" class="box">
-                <img src="../assets/images/burrito-img.png" alt="">
-                <h3>burrito</h3>
+                <img src="../assets/images/menu-4.png" alt="" class="r1">
+                <h3>noodles</h3>
             </router-link>
 
             <router-link @click="scrollToTop()" to="/menu" class="box">
@@ -114,6 +114,59 @@
             </div>
         </div>
     </div>
+
+    <section class="review" id="review">
+
+
+        <!-- Reviews -->
+        <h1 class="heading"> <span>customers reviews</span></h1>
+
+        <div class="box-container">
+
+            <div class="box-review">
+                <img src="../assets/images/pic1.png" alt="">
+                <h3>Priya Patel</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p>The Tasty Sweets are simply divine. Every bite of the cake was moist and delicious. A real treat!"
+                </p>
+
+            </div>
+            <div class="box-review">
+                <img src="../assets/images/pic2.webp" alt="">
+                <h3>Rahul Gupta</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p>TastyBites breakfast is truly satisfying! They always hit the spot for me.</p>
+
+            </div>
+            <div class="box-review">
+                <img src="../assets/images/pic3.jpg" alt="">
+                <h3>meera pandi</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p> It's the ultimate comfort food to start your day with. Highly recommend!</p>
+
+            </div>
+        </div>
+    </section>
+
+    
 </template>
 
 <script>
@@ -207,7 +260,7 @@ export default {
 
 .home-category .box:hover {
     /* background: #27ae60; */
-    background:#ff6600 ;
+    background: #ff6600;
     /* scale  */
     transform: scale(1.1);
 }
@@ -219,11 +272,13 @@ export default {
 .home-category .box img {
     height: 7rem;
 }
-.dessert img{
+
+.dessert img {
     /* background-color: red; */
     position: relative;
     right: 19px;
 }
+
 .home-category .box h3 {
     font-size: 1.8rem;
     color: #130f40;
@@ -310,10 +365,12 @@ export default {
     color: #fff;
     padding-top: .5rem;
 }
-.grid{
+
+.grid {
     /* border: 2px solid red; */
     margin: 4px 0;
 }
+
 .home-about {
     display: flex;
     flex-wrap: wrap;
@@ -377,7 +434,77 @@ export default {
     font-size: 1.7rem;
     color: #130f40;
 }
+.review h1{
+    margin-top: 25px;
+}
+.review h1 span{
+    font-size: 30px;
+}
 
+.box-review {
+    flex: 1 1 25rem;
+    padding: 1rem;
+    text-align: center;
+
+}
+.r1{
+    position: relative;
+    right: 8px;
+}
+.box-review img {
+    border-radius: 50%;
+    border: 1rem solid #fff;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+
+.review .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 0 60px ;
+}
+
+.review .box-container .box-review {
+    text-align: center;
+    padding: 2rem;
+    border: 1rem solid #fff;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
+    border-radius: .5rem;
+    flex: 1 1 30rem;
+    background: #045372;
+    margin-top: 6rem;
+    /* border: 2px solid red; */
+
+}
+
+.review .box-container .box-review img {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    border: 1rem solid #fff;
+    margin-top: -8rem;
+    object-fit: cover;
+}
+
+.review .box-container .box-review h3 {
+    font-size: 2.5rem;
+    color: #fff;
+    padding: .5rem 0;
+}
+
+.review .box-container .box-review .stars i {
+    font-size: 2rem;
+    /* color: var(--red); */
+    color: rgb(177, 216, 36);
+    padding: .5rem 0;
+}
+
+.review .box-container .box-review p {
+    font-size: 1.7rem;
+    color: #eee;
+    padding: 1rem 0;
+}
 @media (max-width: 768px) {
     #menu-btn {
         display: inline-block;
@@ -409,7 +536,3 @@ export default {
     }
 }
 </style>
-
-
-
-

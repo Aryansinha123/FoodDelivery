@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <router-link @click="scrollToTop()" to="/" class="logo"><img src="../assets/images/taco-logo.png" alt="" />HungerGo
+        <router-link @click="scrollToTop()" to="/" class="logo"><img src="../assets/images/delivery-icon.svg" alt="" />HungerGo
         </router-link>
 
         <nav class="navbar">
@@ -116,8 +116,12 @@ export default {
 }
 
 .header .logo img {
-    padding-right: .5rem;
+    padding-right: .8rem;
     color: #27ae60;
+    width: 15%;
+    height: 20%;
+    margin-right: 6px;
+    /* border: 2px solid red; */
 }
 
 .header .navbar a {

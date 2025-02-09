@@ -7,8 +7,11 @@
 
         <div class="row">
             <div class="col-sm-4 col-12 filter-box">
-                <div class="row search-box">
-                    <input type="text" class="search-input" v-model="foodObj.name" placeholder="Search.." />
+              
+                <div class="search-container searc1h-box" :class="{ active: isSearchActive }">
+                    <img src="../assets/images/search_icon.png" alt="Search" class="search-icon" @click="toggleSearch">
+                    <input type="text" class="search-input" v-model="foodObj.name" placeholder="Search..."
+                        ref="searchInput">
                 </div>
 
                 <div class="row filter-drop-down">
@@ -184,7 +187,7 @@
                                 <div class="price">
                                     ${{ parseFloat(f.food_price) - parseFloat(f.food_discount) }}
                                     <span v-if="parseFloat(f.food_discount) != 0.00">${{ parseFloat(f.food_price)
-                                    }}</span>
+                                        }}</span>
                                 </div>
                                 <button class="btn" @click="addItem(index)">Add to cart</button>
                             </div>
@@ -239,6 +242,7 @@ export default {
             previousCategoryClicked: "",
             previousPriceClicked: "",
             previousTypeClicked: "",
+            isSearchActive: false,
         };
     },
 
@@ -265,6 +269,7 @@ export default {
         }
     },
     methods: {
+        
         set(val) {
             this.pageNum = val;
         },
@@ -464,7 +469,19 @@ export default {
                 }
             }
             this.showDropDown = !this.showDropDown;
-        }
+        },
+        
+        toggleSearch() {
+      this.isSearchActive = !this.isSearchActive;
+      if (this.isSearchActive) {
+        this.$nextTick(() => {
+          this.$refs.searchInput.focus();
+        });
+      }
+    },
+    // ... other methods ...
+  
+        
 
     },
     components: { QuickView }
@@ -472,6 +489,7 @@ export default {
 </script>
 
 <style scoped>
+
 input[type="button"] {
     background: none;
     color: inherit;
@@ -534,28 +552,62 @@ hr {
     transition: all 0.5s ease;
 }
 
-.search-box {
-    width: 100%;
-    justify-content: center;
-    position: relative;
-    /* padding: 211px; */
-    display: flex;
+
+
+.search-container {
+  position: relative;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #ddd;
+  padding: 5px;
+  cursor: pointer;
+  border: 2px solid green;
+  /* background-color: red; */
+}
+
+.search-container.active {
+  width: 25vw;
+  max-width: 265px;
 }
 
 .search-input {
-    margin: 0;
-    width: 100%;
-    height: 40px;
-    font-size: 20px;
-    color: white;
-    background: #27ae60;
-    padding: 4px;
+  width: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  transition: width 0.3s ease-in-out;
+  font-size: 16px;
+  flex: 1;
+  background: transparent;
+  color: black;
+}
+
+.search-container.active .search-input {
+  width: 100%;
+  padding: 10px;
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  margin-right: 8px;
 }
 
 ::placeholder {
-    color: white;
+  color: #666;
 }
 
+.search-container.active .search-input::placeholder {
+  color: #666;
+}
 .menu-section {
     padding: 2rem 9%;
 }
@@ -603,7 +655,11 @@ hr {
     padding: 2rem;
     text-align: center;
 }
-
+.box-container .box:hover{
+    /* border: 2px solid red; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transform: scale(1.03);
+}
 .menu-section .box-container .box .fa-heart {
     position: absolute;
     top: 1.5rem;
@@ -614,11 +670,10 @@ hr {
 }
 
 .menu-section .box-container .box .fa-heart:hover {
-    color: #27ae60;
-}
-.fa-heart:hover{
     color: red;
 }
+
+
 .menu-section .box-container .box .image {
     margin: 1rem 0;
 }
