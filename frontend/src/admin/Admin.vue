@@ -10,11 +10,24 @@
                     </ul>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <input type="password" id="uPass" name="uPass" class="form-control"
                         placeholder="enter admin password" v-model="adminObj.pass" />
                 </div>
-
+                <div class="form-group password-field">
+                    <input :type="showPassword ? 'text' : 'password'" id="uPass" name="uPass" class="form-control"
+                        placeholder="Enter your password" v-model="loginObj.pass" />
+                    <button type="button" class="eye-btn" @click="togglePasswordVisibility">
+                        <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                </div> -->
+                <div class="form-group password-group">
+                    <input :type="showPassword ? 'text' : 'password'" id="uPass" name="uPass" class="form-control"
+                        placeholder="Enter admin password" v-model="adminObj.pass" />
+                    <button type="button" class="eye-icon" @click="togglePassword">
+                        <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                </div>
                 <div class="form-group">
                     <input type="submit" value="admin access" class="btn">
                 </div>
@@ -32,14 +45,17 @@ export default {
     data() {
         return {
             adminObj: { pass: "" },
-            key: "25082002",
+            key: "13052005",
             errors: [],
+            showPassword: false,
         }
     },
 
     methods: {
         ...mapMutations(["setAdmin"]),
-
+        togglePassword() {
+            this.showPassword = !this.showPassword;
+        },
         handleSubmit(e) {
             this.errors = [];
             if (!this.adminObj.pass) {
@@ -66,11 +82,13 @@ export default {
 </script>
 
 <style scoped>
+
 .admin-container {
     padding: 2rem 9%;
 }
 
 .admin-container .admin-form-container {
+    background-color: red;
     background-color: #fff;
     height: 100vh;
 }
@@ -150,5 +168,29 @@ export default {
 .admin-container .admin-form-container form .error-box ul li {
     padding-left: 10px;
     color: rgb(182, 0, 0);
+}
+.password-group {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.admin-container .admin-form-container form h3 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #130f40;
+    margin: 0;
 }
 </style>

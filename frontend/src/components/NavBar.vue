@@ -123,7 +123,10 @@ export default {
     margin-right: 6px;
     /* border: 2px solid red; */
 }
-
+.header .navbar{
+    position: relative;
+    right: 90px;
+}
 .header .navbar a {
     font-size: 1.7rem;
     margin: 0 1rem;
@@ -131,11 +134,13 @@ export default {
 }
 
 .header .navbar a:hover {
-    color: #27ae60;
+    color: black;
+    transform: scale(1.1);
 }
 
 .header .navbar a.router-link-exact-active {
     color: #f38609;
+    color: black;
 }
 
 .header .icons div {

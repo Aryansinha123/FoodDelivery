@@ -131,8 +131,8 @@
                                 <h3>Support</h3>
                             </div>
                             <div class="box-content text-center">
-                                <h3><i class="fa fa-phone"></i> +84 123 123 123</h3>
-                                <span class="small">
+                                <h3><i class="fa fa-phone"></i> +91 8887014665</h3>
+                                <span class="">
                                     Please contact with us if you have any questions. We are avalible 24h.
                                 </span>
                             </div>
@@ -327,7 +327,7 @@ export default {
 
 .item-quantity {
     width: 60px;
-    height: 15px;
+    height: 27px;
 }
 
 .first-price {

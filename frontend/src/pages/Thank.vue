@@ -19,7 +19,7 @@
         <div class="thank-letter">
             <p v-none>Thank you for giving us your trust!</p>
             <p v-none>
-                We have just confirmed you received your order, and hope you are enjoying it.
+                We have just confirmed we have received your order request, and hope to deliver it soon.
                 Every
                 item is handmade by our team, with care to the details, so we can always provide you with the best
                 experience.

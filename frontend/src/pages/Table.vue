@@ -154,25 +154,27 @@ export default {
                 this.errorObj.phoneErr.push('Entering phone number is required');
             }
             else {
-                if (!this.orderObj.phone.startsWith('84')) {
-                    this.errorObj.phoneErr.push('Phone numbers must start with 84');
+                // if (!this.orderObj.phone.startsWith('84')) {
+                //     this.errorObj.phoneErr.push('Phone numbers must start with 84');
+                // }
+                if (!/^\d{10}$/.test(this.orderObj.phone)) {
+            this.errorObj.phoneErr.push('Phone number must be exactly 10 digits and contain only numbers');
+        }
+                if (this.orderObj.phone.length != 10) {
+                    this.errorObj.phoneErr.push('Phone numbers must have exactly 10 digits');
                 }
-
-                if (!/[0-9]{10}/.test(this.orderObj.phone)) {
+                else if (!/[0-9]{10}/.test(this.orderObj.phone)) {
                     this.errorObj.phoneErr.push('Phone numbers can only contain numbers');
                 }
 
-                if (this.orderObj.phone.length != 11) {
-                    this.errorObj.phoneErr.push('Phone numbers must have exactly 11 digits');
-                }
             }
 
             if (!this.orderObj.people) {
                 this.errorObj.peopleErr.push("Entering number of people is required");
             }
             else {
-                if (parseInt(this.orderObj.people) > 100) {
-                    this.errorObj.peopleErr.push("Each store can only serve 100 people at a time");
+                if (parseInt(this.orderObj.people) > 200) {
+                    this.errorObj.peopleErr.push("Each restaurant can only serve 200 people at a time");
                 }
 
                 if (parseInt(this.orderObj.people) < 1) {
@@ -297,7 +299,7 @@ export default {
 
 .order-section form {
     background: #f7f7f7;
-    padding: 2rem;
+    padding: 5rem;
     border-radius: .5rem;
 }
 
@@ -306,7 +308,7 @@ export default {
 }
 
 .order-section form .row .input-box {
-    width: 49%;
+    width: 46%;
     padding: 1.8rem 0;
 }
 

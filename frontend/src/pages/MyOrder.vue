@@ -16,7 +16,7 @@
                     <div class="w-100 text-center py-1 px-2"><span>Status:</span>{{ " " + avaiableStatus[b.bill_status]
                     }}
                     </div>
-                    <div class="w-100 text-center py-1 px-2"><span>When:</span> {{ b.bill_when }}</div>
+                    <div class="w-100 text-center py-1 px-2"><span>Time:</span> {{ b.bill_when }}</div>
                 </div>
                 <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between card-summary">
 

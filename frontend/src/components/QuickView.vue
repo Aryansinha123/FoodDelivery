@@ -18,7 +18,7 @@
                             }}</span></p>
                     <div class="qty">
                         <label for="qty">Quantity:</label>
-                        <input type="number" name="qty" id="qty" value="1" min="1" max="1000"
+                        <input type="number" name="qty" id="qty" value="1" min="1" max="100"
                             @change="onQtyChange($event)" />
                     </div>
                     <button class="btn" @click="addToCart">Add to cart</button>
@@ -119,8 +119,9 @@ export default {
 
 .quick-view .quick-view-inner {
     width: 45vw;
-    height: 45vh;
+    height: 60vh;
     background-color: #fff;
+    /* border: 2px solid red; */
     padding: 32px;
 }
 
@@ -156,7 +157,21 @@ export default {
     margin-top: 20px;
     float: right;
 }
+.qty input{
+    border: 0.5px solid black;
+    padding: 3px;
+}
+@media (max-width:1500px){
+    .quick-view .quick-view-inner {
+        width: 60vw;
+        height: 70vh;
 
+    }
+
+    
+
+
+}
 @media (max-width: 768px) {
 
     .quick-view .quick-view-inner {
