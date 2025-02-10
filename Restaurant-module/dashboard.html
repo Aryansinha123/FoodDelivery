@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">Restaurant Admin</div>
+        <button class="menu-btn active" onclick="showSection('dashboard')">Dashboard</button>
+        <button class="menu-btn" onclick="showSection('menu-management')">Menu Management</button>
+        <button class="menu-btn" onclick="showSection('orders')">Order Management</button>
+        <button class="menu-btn" onclick="showSection('reports')">Reports</button>
+        <button class="menu-btn" onclick="showSection('settings')">Settings</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section">
+            <h1>Dashboard Overview</h1>
+            <div class="revenue-chart">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="order-list">
+                <h2>Recent Orders</h2>
+                <table id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Customer Name</th>
+                            <th>Location</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Orders will be populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Menu Management Section -->
+        <div id="menu-management" class="content-section hidden">
+            <h1>Menu Management</h1>
+            <form id="menuForm">
+                <input type="text" id="itemName" placeholder="Item Name" required>
+                <input type="number" id="itemPrice" placeholder="Price" required>
+                <input type="file" id="itemImage" accept="image/*" required>
+                <button type="submit">Add Item</button>
+            </form>
+            <div id="menuItems">
+                <!-- Menu items will be populated here -->
+            </div>
+        </div>
+
+        <!-- Order Management Section -->
+        <div id="orders" class="content-section hidden">
+            <h1>Order Management</h1>
+            <div id="orderDetails">
+                <!-- Order details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
