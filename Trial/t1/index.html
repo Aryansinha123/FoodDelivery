@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app" class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">🍽️</div>
+            <nav>
+                <ul>
+                    <li><a href="#">🏠 Dashboard</a></li>
+                    <li><a href="#">📦 Orders</a></li>
+                    <li><a href="#">📊 Analytics</a></li>
+                    <li><a href="#">⚙ Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Hello Admin!</h1>
+                <button class="btn logout-btn" @click="handleLogout()">Logout</button>
+            </header>
+
+            <section class="dashboard-stats">
+                <div class="stat-card"> 
+                    <h2>120</h2>
+                    <p>Total Menus</p>
+                </div>
+                <div class="stat-card">
+                    <h2>180</h2>
+                    <p>Total Orders Today</p>
+                </div>
+                <div class="stat-card">
+                    <h2>240</h2>
+                    <p>Total Clients Today</p>
+                </div>
+                <div class="stat-card">
+                    <h2>140</h2>
+                    <p>Revenue Ratio</p>
+                </div>
+            </section>
+
+            <section class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Bill Id</th>
+                            <th>User Id</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>When</th>
+                            <th>Paid</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(b) in filterBills.slice().reverse()" :key="b.bill_id">
+                            <td>{{ b.bill_id }}</td>
+                            <td>{{ b.user_id }}</td>
+                            <td>{{ b.bill_phone }}</td>
+                            <td>{{ b.bill_address }}</td>
+                            <td>{{ b.bill_when }}</td>
+                            <td>{{ b.bill_paid }}</td>
+                            <td>${{ b.bill_total }}</td>
+                            <td>{{ avaiableStatus[b.bill_status] }}</td>
+                            <td>
+                                <button v-if="b.bill_status < 5" class="action-btn" @click="nextStatusBtn(b.bill_id)">
+                                    {{ avaiableStatus[b.bill_status + 1] }}
+                                </button>
+
+                                <button v-if="b.bill_status == 1" class="cancel-btn" @click="cancelBtn(b.bill_id)">
+                                    Cancel
+                                </button>
+
+                                <button v-else-if="b.bill_status == 5 && b.bill_paid == 'false'" class="paid-btn"
+                                    @click="paidBtn(b.bill_id)">
+                                    Paid
+                                </button>
+
+                                <button v-else-if="b.bill_status == 5 && b.bill_paid == 'true'" class="action-btn"
+                                    @click="nextStatusBtn(b.bill_id)">
+                                    {{ avaiableStatus[b.bill_status + 1] }}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

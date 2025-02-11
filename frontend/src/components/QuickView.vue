@@ -119,7 +119,7 @@ export default {
 
 .quick-view .quick-view-inner {
     width: 45vw;
-    height: 60vh;
+    height: 55vh;
     background-color: #fff;
     /* border: 2px solid red; */
     padding: 32px;
