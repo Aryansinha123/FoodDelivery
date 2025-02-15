@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <router-link @click="scrollToTop()" to="/" class="logo"><img src="../assets/images/delivery-icon.svg" alt="" />HungerGo
+        <router-link @click="scrollToTop()" to="/" class="logo"><img src="../assets/images/logo-3.png" alt="" />
         </router-link>
 
         <nav class="navbar">
