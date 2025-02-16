@@ -105,8 +105,9 @@ export default {
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 2rem 9%;
+    justify-content: space-around;
+    padding: 1rem 9%;
+    /* border: 2px solid red; */
 }
 
 .header .logo {
@@ -118,14 +119,17 @@ export default {
 .header .logo img {
     padding-right: .8rem;
     color: #27ae60;
-    width: 15%;
+    width: 20%;
     height: 20%;
     margin-right: 6px;
     /* border: 2px solid red; */
 }
 .header .navbar{
+    /* border: 2px solid red; */
+    width: 35vw;
     position: relative;
-    right: 90px;
+    right: 25rem;
+    padding-left: 10px;
 }
 .header .navbar a {
     font-size: 1.7rem;
@@ -222,6 +226,11 @@ export default {
 }
 
 @media (max-width: 768px) {
+    .icons{
+        /* border: 2px solid red; */
+        display: flex;
+        
+    }
     .header .navbar {
         position: absolute;
         top: 99%;
@@ -231,6 +240,7 @@ export default {
         border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
         border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        width: 100vw;
     }
 
     .header .navbar.active {
@@ -245,6 +255,10 @@ export default {
 
     #menu-btn {
         display: inline-block;
+    }
+   
+    .logo img{
+       width: 40% !important;
     }
 
 }
