@@ -180,15 +180,15 @@ export default {
                 this.errorObj.phoneErr.push('Entering phone number is required');
             }
             else {
-                if (!this.registerObj.phone.startsWith('84')) {
-                    this.errorObj.phoneErr.push('Phone numbers must start with 84');
+                // if (!this.registerObj.phone.startsWith('84')) {
+                //     this.errorObj.phoneErr.push('Phone numbers must start with 84');
+                // }
+
+                if (this.registerObj.phone.length != 10) {
+                    this.errorObj.phoneErr.push('Phone numbers must have exactly 10 digits');
                 }
 
-                if (this.registerObj.phone.length != 11) {
-                    this.errorObj.phoneErr.push('Phone numbers must have exactly 11 digits');
-                }
-
-                if (!/[0-9]{11}/.test(this.registerObj.phone)) {
+                if (!/[0-9]{10}/.test(this.registerObj.phone)) {
                     this.errorObj.phoneErr.push('Phone numbers can only contain numbers');
                 }
             }

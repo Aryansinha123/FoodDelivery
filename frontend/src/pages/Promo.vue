@@ -195,7 +195,7 @@
                         <p>Free 01 Michelada when total bill more than $20</p>
                     </li>
                     <li>
-                        <p>From 23/11/2021 to 12/12/2021</p>
+                        <p>From 23/3/2025 to 12/4/2025</p>
                     </li>
                     <li>
                         <p>Only online payment method</p>
