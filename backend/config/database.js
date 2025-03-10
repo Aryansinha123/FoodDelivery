@@ -7,7 +7,7 @@ const db = mysql.createConnection({
     user: "root",
     password: "",
     database: "db_restaurant",
-    port: 3307
+    port: 3307//change made
 });
 
 
