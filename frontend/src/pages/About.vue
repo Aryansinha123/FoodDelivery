@@ -305,7 +305,7 @@ export default {
   }
   
   .col-1:first-child:hover img {
-    background-color: yellow;
+    /* background-color: yellow; */
     transform: translateX(245px);
   }
   
