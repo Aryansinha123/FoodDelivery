@@ -220,9 +220,9 @@ export default {
                     this.errorObj.numErr.push('Entering card number is required');
                 }
                 else {
-                    if (!this.cardObj.number.startsWith('4')) {
-                        this.errorObj.numErr.push('Visa card numbers must start with 4');
-                    }
+                    // if (!this.cardObj.number.startsWith('4')) {
+                    //     this.errorObj.numErr.push('Visa card numbers must start with 4');
+                    // }
 
                     if (this.cardObj.number.length != 16) {
                         this.errorObj.numErr.push('Visa card numbers must have exactly 16 digits');

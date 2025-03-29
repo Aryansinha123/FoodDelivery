@@ -312,8 +312,8 @@ export default {
   width: 100%;
   position: sticky;
   bottom: 0;
-  z-index: 2;
-  }
+  z-index: 6;
+}
 
 .footer-bottom .row {
     display: flex;
