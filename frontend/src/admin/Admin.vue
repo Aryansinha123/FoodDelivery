@@ -69,7 +69,10 @@ export default {
                 e.preventDefault();
                 if (this.key === this.adminObj.pass) {
                     this.setAdmin("admin");
-                    this.$router.push("/admin/dashboard");
+                    // Wait a tick so Vuex reactivity updates before dashboard mounts.
+                    this.$nextTick(() => {
+                        this.$router.push("/admin/dashboard");
+                    });
                 }
                 else {
                     this.errors.push("Admin password wrong!")

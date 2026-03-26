@@ -11,7 +11,7 @@
 
             <div class="icons ">
                 <img src="../assets/images/icon-1.png" alt="">
-                <h3>5:00am to 2:00am</h3>
+                <h3>9:00am to 1:00am</h3>
             </div>
 
             <div class="icons">

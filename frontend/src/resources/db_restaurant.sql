@@ -15,10 +15,10 @@ CREATE TABLE food(
 ) ENGINE=INNODB;
 
 INSERT INTO food (food_name, food_star, food_vote, food_price, food_discount, food_desc, food_status, food_type, food_category, food_src)
-VALUES("carne asada tacos","4.5", "999", "12.00", "0.00", "03 pieces per serving", "best seller", "meat", "taco", "taco/taco-1.png"),
-("shrimp tacos","4.5", "999", "15.00", "3.00", "03 pieces per serving", "best seller", "meat", "taco", "taco/taco-2.png"),
-("barbacoa tacos","4.5","500","12.00","0.00","03 pieces per serving","best seller","meat","taco","taco/taco-3.png"),
-("tacos al pastor","4.5","999","13.00","2.00","03 pieces per serving","best seller","meat","taco","taco/taco-4.png"),
+VALUES("carne asada tacos","4.5", "999", "120", "0.00", "03 pieces per serving", "best seller", "meat", "taco", "taco/taco-1.png"),
+("shrimp tacos","4.5", "999", "15.00", "200", "03 pieces per serving", "best seller", "meat", "taco", "taco/taco-2.png"),
+("barbacoa tacos","4.5","500","12.00","100","03 pieces per serving","best seller","meat","taco","taco/taco-3.png"),
+("tacos al pastor","4.5","999","13.00","80","03 pieces per serving","best seller","meat","taco","taco/taco-4.png"),
 ("tinga tacos","4","500","11.00","0.00","03 pieces per serving","normal","meat","taco","taco/taco-5.png"),
 ("campechanos tacos","4","500","11.00","1.00","03 pieces per serving","new dishes","meat","taco","taco/taco-6.png"),
 ("carnitas tacos","4.5","500","14.00","2.00","03 pieces per serving","seasonal dishes online only","meat","taco","taco/taco-7.png"),

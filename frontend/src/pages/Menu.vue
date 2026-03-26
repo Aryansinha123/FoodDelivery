@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="menu-section">
         <div class="heading">
             <span>menu</span>
@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-sm-4 col-12 filter-box">
-              
+
                 <div class="search-container searc1h-box" :class="{ active: isSearchActive }">
                     <img src="../assets/images/search_icon.png" alt="Search" class="search-icon" @click="toggleSearch">
                     <input type="text" class="search-input" v-model="foodObj.name" placeholder="Search..."
@@ -185,9 +185,9 @@
                                     <p>{{ f.food_desc }}</p>
                                 </div>
                                 <div class="price">
-                                    ${{ parseFloat(f.food_price) - parseFloat(f.food_discount) }}
-                                    <span v-if="parseFloat(f.food_discount) != 0.00">${{ parseFloat(f.food_price)
-                                        }}</span>
+                                    {{ parseFloat(f.food_price) - parseFloat(f.food_discount) }}
+                                    <span v-if="parseFloat(f.food_discount) != 0.00">{{ parseFloat(f.food_price)
+                                    }}</span>
                                 </div>
                                 <button class="btn" @click="addItem(index)">Add to cart</button>
                             </div>
@@ -269,7 +269,7 @@ export default {
         }
     },
     methods: {
-        
+
         set(val) {
             this.pageNum = val;
         },
@@ -394,7 +394,7 @@ export default {
                 document.querySelector(`[for=${e.target.id}]`).style.color = "white";
                 document.querySelector(`[for=${e.target.id}]`).querySelector(":scope > button").style.display = "block";
             }
-        },
+        },  
         filterPriceBtn: function (e) {
             this.pageNum = 0;
             this.foodObj.price = "";
@@ -470,26 +470,513 @@ export default {
             }
             this.showDropDown = !this.showDropDown;
         },
-        
+
         toggleSearch() {
-      this.isSearchActive = !this.isSearchActive;
-      if (this.isSearchActive) {
-        this.$nextTick(() => {
-          this.$refs.searchInput.focus();
-        });
-      }
+            this.isSearchActive = !this.isSearchActive;
+            if (this.isSearchActive) {
+                this.$nextTick(() => {
+                    this.$refs.searchInput.focus();
+                });
+            }
+        },
+        // ... other methods ...
+
+
+
     },
-    // ... other methods ...
-  
-        
+    components: { QuickView }
+};
+</script> -->
+<template>
+    <div class="menu-section">
+        <div class="heading">
+            <span>menu</span>
+            <h3>our special dishes</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-12 filter-box">
+
+                <div class="search-container searc1h-box" :class="{ active: isSearchActive }">
+                    <img src="../assets/images/search_icon.png" alt="Search" class="search-icon" @click="toggleSearch">
+                    <input type="text" class="search-input" v-model="foodObj.name" placeholder="Search..."
+                        ref="searchInput">
+                </div>
+
+                <div class="row filter-drop-down">
+                    <p @click="displayFilterDrop">Filter<span v-if="showDropDown">x</span><span v-else>v</span></p>
+                </div>
+
+                <div class="row filter-heading">
+                    <h1>Status</h1>
+                </div>
+
+                <div class="row filter-section">
+                    <ul class="filter-option">
+                        <li>
+                            <input type="button" name="cbStatus" id="bsStatus" value="Best Seller" hidden
+                                @click="filterStatusBtn($event)" />
+                            <label for="bsStatus" class="d-flex justify-content-between">Best Seller
+                                <button class="unselect-btn" @click="unselectStatusBtn($event)"
+                                    value="Best Seller">X</button></label>
+                        </li>
+
+
+                        <li>
+                            <input type="button" name="cbStatus" id="ooStatus" value="Online Only" hidden
+                                @click="filterStatusBtn($event)" />
+                            <label for="ooStatus" class="d-flex justify-content-between">Online Only <button
+                                    class="unselect-btn" @click="unselectStatusBtn($event)"
+                                    value="Online Only">X</button></label>
+                        </li>
+
+
+                        <li>
+                            <input type="button" name="cbStatus" id="soStatus" value="Sale Off" hidden
+                                @click="filterStatusBtn($event)" />
+                            <label for="soStatus" class="d-flex justify-content-between">Sale Off <button
+                                    class="unselect-btn" @click="unselectStatusBtn($event)"
+                                    value="Sale Off">X</button></label>
+                        </li>
+
+
+                        <li>
+                            <input type="button" name="cbStatus" id="sdStatus" value="Seasonal Dishes" hidden
+                                @click="filterStatusBtn($event)" />
+                            <label for="sdStatus" class="d-flex justify-content-between">Seasonal Dishes <button
+                                    class="unselect-btn" @click="unselectStatusBtn($event)"
+                                    value="Seasonal Dishes">X</button></label>
+                        </li>
+
+
+                        <li>
+                            <input type="button" name="cbStatus" id="ndStatus" value="New Dishes" hidden
+                                @click="filterStatusBtn($event)" />
+                            <label for="ndStatus" class="d-flex justify-content-between">New Dishes <button
+                                    class="unselect-btn" @click="unselectStatusBtn($event)"
+                                    value="New Dishes">X</button></label>
+                        </li>
+
+                    </ul>
+                    <hr />
+                </div>
+
+                <div class="row filter-heading">
+                    <h1>Price</h1>
+                </div>
+
+                <div class="row filter-section">
+                    <ul class="filter-option">
+                        <li>
+                            <input type="button" name="rPrice" id="rtfPrice" value="150,400" hidden
+                                @click="filterPriceBtn($event)" />
+                            <label for="rtfPrice" class="d-flex justify-content-between">₹150 - ₹400 <button
+                                    class="unselect-btn" @click="unselectPriceBtn($event)">X</button></label>
+                        </li>
+
+                        <li>
+                            <input type="button" name="rPrice" id="rftPrice" value="400,800" hidden
+                                @click="filterPriceBtn($event)" />
+                            <label for="rftPrice" class="d-flex justify-content-between">₹400 - ₹800 <button
+                                    class="unselect-btn" @click="unselectPriceBtn($event)">X</button></label>
+                        </li>
+
+                        <li>
+                            <input type="button" name="rPrice" id="rttPrice" value="800,1000" hidden
+                                @click="filterPriceBtn($event)" />
+                            <label for="rttPrice" class="d-flex justify-content-between">₹800 - ₹1000 <button
+                                    class="unselect-btn" @click="unselectPriceBtn($event)">X</button></label>
+                        </li>
+
+                        <li>
+                            <input type="button" name="rPrice" id="mtPrice" value="1000" hidden
+                                @click="filterPriceBtn($event)" />
+                            <label for="mtPrice" class="d-flex justify-content-between">{{ ">" }} ₹1000 <button
+                                    class="unselect-btn" @click="unselectPriceBtn($event)">X</button></label>
+                        </li>
+
+                        <li>
+                            <input type="button" name="rPrice" id="ltPrice" value="150" hidden
+                                @click="filterPriceBtn($event)" />
+                            <label for="ltPrice" class="d-flex justify-content-between">{{ "<" }} ₹150 <button
+                                    class="unselect-btn" @click="unselectPriceBtn($event)">X</button></label>
+                        </li>
+
+                    </ul>
+                    <hr />
+                </div>
+
+
+                <div class="row filter-heading">
+                    <h1>Type</h1>
+                </div>
+
+                <div class="row filter-section">
+                    <ul class="filter-option">
+                        <li>
+                            <input type="button" name="rType" id="mType" value="meat" hidden
+                                @click="filterTypeBtn($event)" />
+                            <label for="mType" class="d-flex justify-content-between">meat<button class="unselect-btn"
+                                    @click="unselectTypeBtn($event)">X</button></label>
+                        </li>
+
+                        <li>
+                            <input type="button" name="rType" id="vType" value="vegan" hidden
+                                @click="filterTypeBtn($event)" />
+                            <label for="vType" class="d-flex justify-content-between">vegan<button class="unselect-btn"
+                                    @click="unselectTypeBtn($event)">X</button></label>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="menu-tabs">
+                        <input type="button" id="allFilterFoodBtn" name="allFilterFoodBtn" value="all"
+                            class="menu-tab-item" @click="filterFoodBtn($event)" />
+                        <input type="button" id="tacoFilterFoodBtn" name="tacoFilterFoodBtn" class="menu-tab-item"
+                            value="taco" @click="filterFoodBtn($event)" />
+                        <input type="button" id="burritoFilterFoodBtn" name="burritoFilterFoodBtn" class="menu-tab-item"
+                            value="burrito" @click="filterFoodBtn($event)" />
+                        <input type="button" id="nachosFilterFoodBtn" name="nachosFilterFoodBtn" class="menu-tab-item"
+                            value="nachos" @click="filterFoodBtn($event)" />
+                        <input type="button" id="sidesFilterFoodBtn" name="sidesFilterFoodBtn" class="menu-tab-item"
+                            value="sides" @click="filterFoodBtn($event)" />
+                        <input type="button" id="dessertFilterFoodBtn" name="dessertFilterFoodBtn" class="menu-tab-item"
+                            value="dessert" @click="filterFoodBtn($event)" />
+                        <input type="button" id="drinkFilterFoodBtn" name="drinkFilterFoodBtn" class="menu-tab-item"
+                            value="drink" @click="filterFoodBtn($event)" />
+                    </div>
+                </div>
+
+                <div class="row box-container">
+                    <div v-for="(f, index) in currentPageItems" :key="index">
+                        <div class="box">
+                            <a href="" class="fas fa-heart"></a>
+                            <div class="image">
+                                <img :src="require(`../assets/images/${f.food_src}`)" alt="" />
+                            </div>
+                            <div class="content">
+                                <h3>{{ f.food_name }}</h3>
+                                <div class="stars">
+                                    <div v-for="s in Math.floor(parseFloat(f.food_star))" :key="s" class="d-inline">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div v-if="parseFloat(f.food_star) - Math.floor(parseFloat(f.food_star)) == 0.5"
+                                        class="d-inline">
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span> ({{ f.food_vote }}) </span>
+                                </div>
+                                <div class="desc">
+                                    <p>{{ f.food_desc }}</p>
+                                </div>
+                                <div class="price">
+                                    ₹{{ parseFloat(f.food_price) - parseFloat(f.food_discount) }}
+                                    <span v-if="parseFloat(f.food_discount) != 0.00">₹{{ parseFloat(f.food_price)
+                                    }}</span>
+                                </div>
+                                <button class="btn" @click="addItem(index)">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="!filterFoods.length">
+                        <div class="box">
+                            <div class="content">
+                                <h1 style="color: #057835fa;">No match found!</h1>
+                            </div>
+                            <div class="image">
+                                <img src="../assets/images/notfound.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="calculatePages > 1" class="action-row">
+
+                    <button v-if="pageNum != 0" @click="previous()" class="action-btn"> {{ "<" }} </button>
+                            <div v-for="(p, i) in calculatePages" :key="i" class="d-inline">
+                                <span v-if="i == pageNum" class="highlight" @click="set(i)">{{ i + 1 }}</span>
+                                <span v-else @click="set(i)">{{ i + 1 }}</span>
+                            </div>
+                            <button v-if="pageNum != calculatePages - 1" @click="next()" class="action-btn"> {{ ">" }}
+                            </button>
+                </div>
+            </div>
+        </div>
+
+        <QuickView v-if="showQuickView" :food="sendId">
+            <button class="btn" @click="closeView">X</button>
+        </QuickView>
+    </div>
+</template>
+
+<script>
+import QuickView from "@/components/QuickView.vue";
+import { mapState } from "vuex";
+export default {
+    name: "Menu",
+
+    data() {
+        return {
+            foodObj: { name: "", category: "", status: [], price: "", type: "" },
+
+            showQuickView: false,
+            showDropDown: false,
+            sendId: null,
+
+            perPage: 6,
+            pageNum: 0,
+            previousCategoryClicked: "",
+            previousPriceClicked: "",
+            previousTypeClicked: "",
+            isSearchActive: false,
+        };
+    },
+
+    computed: {
+        ...mapState(["allFoods"]),
+
+        filterFoods: function () {
+            return this.allFoods.filter((f) => f.food_name.toLowerCase().match(this.foodObj.name.toLowerCase()) &&
+                (f.food_category.match(this.foodObj.category) || this.foodObj.category == "all" || this.foodObj.category == "") &&
+                (this.evaluatePrice(f, this.foodObj.price)) &&
+                f.food_type.toLowerCase().match(this.foodObj.type.toLowerCase()) &&
+                (this.evaluateStatus(f, this.foodObj.status)));
+        },
+        currentPageItems: function () {
+            return this.filterFoods.slice(this.pageNum * this.perPage, this.pageNum * this.perPage + this.perPage);
+        },
+        calculatePages: function () {
+            if (this.filterFoods.length % this.perPage != 0) {
+                return Math.floor((this.filterFoods.length) / this.perPage) + 1;
+            }
+            else {
+                return this.filterFoods.length / this.perPage;
+            }
+        }
+    },
+    methods: {
+
+        set(val) {
+            this.pageNum = val;
+        },
+        next() {
+            this.pageNum++;
+        },
+        previous() {
+            this.pageNum--;
+        },
+        checkSale: function (food, statusArray) {
+            if (statusArray.includes("Sale Off")) {
+                if (parseFloat(food.food_discount) > 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        },
+        checkBest: function (food, statusArray) {
+            if (statusArray.includes("Best Seller")) {
+                if (food.food_status.includes("best seller")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        },
+        checkOnl: function (food, statusArray) {
+            if (statusArray.includes("Online Only")) {
+                if (food.food_status.includes("online only")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        },
+        checkSeason: function (food, statusArray) {
+            if (statusArray.includes("Seasonal Dishes")) {
+                if (food.food_status.includes("seasonal dishes")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        },
+        checkNew: function (food, statusArray) {
+            if (statusArray.includes("New Dishes")) {
+                if (food.food_status.includes("new dishes")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        },
+        evaluateStatus: function (food, statusArray) {
+            this.pageNum = 0;
+            if (statusArray.length != 0) {
+                if (this.checkSale(food, statusArray) && this.checkBest(food, statusArray) && this.checkNew(food, statusArray) && this.checkSeason(food, statusArray) && this.checkOnl(food, statusArray)) {
+                    return food;
+                }
+            }
+            else {
+                return food;
+            }
+        },
+        evaluatePrice: function (food, priceRange) {
+            this.pageNum = 0;
+            var cal = parseFloat(food.food_price) - parseFloat(food.food_discount);
+            if (priceRange == "150,400") {
+                if (150 <= cal && cal <= 400) {
+                    return food;
+                }
+            }
+            else if (priceRange == "400,800") {
+                if (400 <= cal && cal <= 800) {
+                    return food;
+                }
+            }
+            else if (priceRange == "800,1000") {
+                if (800 <= cal && cal <= 1000) {
+                    return food;
+                }
+            }
+            else if (priceRange == "150") {
+                if (cal < 150) {
+                    return food;
+                }
+            }
+            else if (priceRange == "1000") {
+                if (cal > 1000) {
+                    return food;
+                }
+            }
+            else if (priceRange == "") {
+                return food;
+            }
+        },
+        filterFoodBtn: function (e) {
+            this.pageNum = 0;
+            if (this.foodObj.category != e.target.value && this.previousCategoryClicked != "") {
+                this.previousCategoryClicked.target.style.background = "#27ae60";
+            }
+            this.foodObj.category = e.target.value;
+            this.previousCategoryClicked = e;
+            e.target.style.background = "#057835fa";
+        },
+        filterStatusBtn: function (e) {
+            this.pageNum = 0;
+            if (this.foodObj.status.includes(e.target.value) == false) {
+                this.foodObj.status.push(e.target.value);
+                document.querySelector(`[for=${e.target.id}]`).style.background = "#057835fa";
+                document.querySelector(`[for=${e.target.id}]`).style.color = "white";
+                document.querySelector(`[for=${e.target.id}]`).querySelector(":scope > button").style.display = "block";
+            }
+        },  
+        filterPriceBtn: function (e) {
+            this.pageNum = 0;
+            this.foodObj.price = "";
+            this.foodObj.price += e.target.value;
+            document.querySelector(`[for=${e.target.id}]`).style.background = "#057835fa";
+            document.querySelector(`[for=${e.target.id}]`).style.color = "white";
+            document.querySelector(`[for=${e.target.id}]`).querySelector(":scope > button").style.display = "block";
+            if (this.previousPriceClicked != "") {
+                document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).style.background = "inherit";
+                document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).style.color = "inherit";
+                document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).querySelector(":scope > button").style.display = "none";
+            }
+            this.previousPriceClicked = e;
+        },
+        filterTypeBtn: function (e) {
+            this.pageNum = 0;
+            this.foodObj.type = "";
+            this.foodObj.type += e.target.value;
+            document.querySelector(`[for=${e.target.id}]`).style.background = "#057835fa";
+            document.querySelector(`[for=${e.target.id}]`).style.color = "white";
+            document.querySelector(`[for=${e.target.id}]`).querySelector(":scope > button").style.display = "block";
+            if (this.previousTypeClicked != "") {
+                document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).style.background = "inherit";
+                document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).style.color = "inherit";
+                document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).querySelector(":scope > button").style.display = "none";
+            }
+            this.previousTypeClicked = e;
+        },
+        unselectStatusBtn: function (e) {
+            this.pageNum = 0;
+            this.foodObj.status = this.foodObj.status.filter(function (a) { return a !== e.target.value; });
+            e.target.parentNode.style.background = "inherit";
+            e.target.parentNode.style.color = "inherit";
+            e.target.parentNode.querySelector(":scope > button").style.display = "none";
+        },
+        unselectPriceBtn: function () {
+            this.pageNum = 0;
+            this.foodObj.price = "";
+            document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).style.background = "inherit";
+            document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).style.color = "inherit";
+            document.querySelector(`[for=${this.previousPriceClicked.target.id}]`).querySelector(":scope > button").style.display = "none";
+            this.previousPriceClicked = "";
+        },
+        unselectTypeBtn: function () {
+            this.pageNum = 0;
+            this.foodObj.type = "";
+            document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).style.background = "inherit";
+            document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).style.color = "inherit";
+            document.querySelector(`[for=${this.previousTypeClicked.target.id}]`).querySelector(":scope > button").style.display = "none";
+            this.previousTypeClicked = "";
+        },
+        addItem: function (index) {
+            this.sendId = parseInt(this.currentPageItems[index].food_id);
+            this.showQuickView = !this.showQuickView;
+        },
+
+        closeView: function () {
+            this.showQuickView = !this.showQuickView;
+        },
+
+        displayFilterDrop: function () {
+            let divControl1 = document.getElementsByClassName("filter-heading");
+            let divControl2 = document.getElementsByClassName("filter-section");
+            for (var i = 0; i < divControl1.length; i++) {
+                if (this.showDropDown) {
+                    divControl1[i].style.display = "none";
+                    divControl2[i].style.display = "none";
+                }
+                else {
+                    divControl1[i].style.display = "block";
+                    divControl2[i].style.display = "block";
+                }
+            }
+            this.showDropDown = !this.showDropDown;
+        },
+
+        toggleSearch() {
+            this.isSearchActive = !this.isSearchActive;
+            if (this.isSearchActive) {
+                this.$nextTick(() => {
+                    this.$refs.searchInput.focus();
+                });
+            }
+        },
+        // ... other methods ...
+
+
 
     },
     components: { QuickView }
 };
 </script>
-
 <style scoped>
-
 input[type="button"] {
     background: none;
     color: inherit;
@@ -555,59 +1042,60 @@ hr {
 
 
 .search-container {
-  position: relative;
-  left: -20px;
-  display: flex;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  overflow: hidden;
-  background: #fff;
-  transition: all 0.3s ease-in-out;
-  border: 2px solid #ddd;
-  padding: 5px;
-  cursor: pointer;
-  border: 2px solid green;
-  /* background-color: red; */
+    position: relative;
+    left: -20px;
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #ddd;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid green;
+    /* background-color: red; */
 }
 
 .search-container.active {
-  width: 25vw;
-  max-width: 265px;
+    width: 25vw;
+    max-width: 265px;
 }
 
 .search-input {
-  width: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  transition: width 0.3s ease-in-out;
-  font-size: 16px;
-  flex: 1;
-  background: transparent;
-  color: black;
+    width: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    transition: width 0.3s ease-in-out;
+    font-size: 16px;
+    flex: 1;
+    background: transparent;
+    color: black;
 }
 
 .search-container.active .search-input {
-  width: 100%;
-  padding: 10px;
+    width: 100%;
+    padding: 10px;
 }
 
 .search-icon {
-  width: 24px;
-  height: 24px;
-  padding: 5px;
-  margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+    margin-right: 8px;
 }
 
 ::placeholder {
-  color: #666;
+    color: #666;
 }
 
 .search-container.active .search-input::placeholder {
-  color: #666;
+    color: #666;
 }
+
 .menu-section {
     padding: 2rem 9%;
 }
@@ -655,11 +1143,13 @@ hr {
     padding: 2rem;
     text-align: center;
 }
-.box-container .box:hover{
+
+.box-container .box:hover {
     /* border: 2px solid red; */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transform: scale(1.03);
 }
+
 .menu-section .box-container .box .fa-heart {
     position: absolute;
     top: 1.5rem;

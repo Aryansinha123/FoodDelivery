@@ -100,11 +100,10 @@
 
   </div>
   <div class="footer-bottom">
-      <div class="row container d-flex">
-        <p>Copyright © 2025 </p>
-        <p>Created by Team-1</p>
-      </div>
+    <div class="row container d-flex">
+      <p>Copyright © 2026 </p>
     </div>
+  </div>
 </template>
 
 <script>
@@ -301,14 +300,15 @@ export default {
 .child:hover>.button {
   transform: translate3d(0px, 20px, 30px) perspective(80px) rotateX(-60deg) translateY(2px) translateZ(10px);
 }
+
 .footer-bottom {
-    background: linear-gradient(to right, #1e1e1e, #2c2c2c);
-    color: white;
-    text-align: center;
-    padding: 8px 0;
-    font-size: 16px;
-    font-weight: 500;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #1e1e1e, #2c2c2c);
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
   position: sticky;
   bottom: 0;
@@ -316,31 +316,29 @@ export default {
 }
 
 .footer-bottom .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto auto;
+  text-align: center;
+  padding: 0 14px;
+  /* border: 2px solid red; */
 }
 
 .footer-bottom p {
-    margin: 5px 0;
-    transition: color 0.3s ease-in-out;
-}
-
-.footer-bottom p:hover {
-    color: #ff9800;
-    cursor: pointer;
+  margin: auto auto;
+  transition: color 0.3s ease-in-out;
+  text-align: center;
 }
 
 /* Responsive Styling */
 @media (max-width: 600px) {
-    .footer-bottom .row {
-        flex-direction: column;
-        text-align: center;
-    }
+  .footer-bottom .row {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media (max-width: 576px) {

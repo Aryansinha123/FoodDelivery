@@ -111,11 +111,19 @@ export default {
     },
 
     mounted() {
-        this.getAllBills();
-        if (!this.admin) {
-            this.$router.push("/");
-        }
-        this.autoUpdate();
+        // Vue reactivity updates are applied on next tick. If we navigate here
+        // right after setting admin, the value may not be reflected yet.
+        this.$nextTick(() => {
+            // If the admin isn't authenticated, go to the admin login page.
+            // (Don't call the protected API until after the check.)
+            if (!this.admin) {
+                this.$router.push("/admin");
+                return;
+            }
+
+            this.getAllBills();
+            this.autoUpdate();
+        });
     },
 
     beforeUnmount() {
